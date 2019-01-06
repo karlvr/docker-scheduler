@@ -1,5 +1,7 @@
 # Docker Scheduler
 
+A cron-based scheduler service to run on a Docker Swarm to run tasks as Docker Swarm services.
+
 Based on https://github.com/rayyanqcri/swarm-scheduler
 
 ## Overview
