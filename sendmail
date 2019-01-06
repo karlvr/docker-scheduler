@@ -1,0 +1,15 @@
+#!/bin/bash -eu
+#
+# A simple script to pretend to by sendmail so we can see the error messagds from cron.
+# It waits for the end of the mail message headers to reduce the noise in the logs.
+
+past_headers=0
+
+while IFS= read -r line
+do
+	if [ "$past_headers" == "1" ]; then
+		echo $line
+	elif [ -z "$line" ]; then
+		past_headers=1
+	fi
+done
