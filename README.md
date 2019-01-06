@@ -52,8 +52,8 @@ First create your services with the following deployment settings:
     ...
     deploy:
       replicas: 0
-        restart_policy:
-          condition: none
+      restart_policy:
+        condition: none
 ```
 
 This is so they are declared, but not initially running, and so when they finish running they don't get restarted.
