@@ -19,7 +19,7 @@ RUN echo 'cron.*                /dev/stdout' >> /etc/rsyslog.conf && \
 	echo > /etc/crontab
 COPY ./docker-entrypoint.sh /
 COPY ./sendmail /usr/sbin/sendmail
-COPY ./run-service /usr/bin/
+COPY ./commands/* /usr/bin/
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["cron", "-f", "-L", "15"]

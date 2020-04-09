@@ -1,0 +1,33 @@
+#!/bin/bash -eu
+#
+# Run the named service
+
+force=
+while getopts ":f" opt; do
+  case $opt in
+    f)
+      force=1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+if [ -z "$force" ]; then
+	replicas=$(docker service ls --filter name="$1" --format '{{.Replicas}}' | cut -d '/' -f 1)
+
+	if [ -z "$replicas" ]; then
+		echo "run-service: service doesn't exist: $1"
+		exit 1
+	fi
+
+	if [ "$replicas" != "0" ]; then
+		echo "run-service: skipping as the service still has $replicas replicas: $1"
+		exit 0
+	fi
+fi
+
+docker service update --force --replicas 1 "$@"

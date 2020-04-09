@@ -1,5 +1,0 @@
-#!/bin/bash -eu
-#
-# Run the named service
-
-docker service update --force --replicas 1 "$@"
