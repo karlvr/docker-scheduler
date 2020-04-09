@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 #
-# A simple script to pretend to by sendmail so we can see the error messagds from cron.
+# A simple script to pretend to by sendmail so we can see the error messages from cron.
 # It waits for the end of the mail message headers to reduce the noise in the logs.
 
 past_headers=0
